@@ -24,7 +24,7 @@ def stemming(content):
 
 # Streamlit UI
 st.title("Twitter Sentiment Analysis")
-st.write("Enter a tweet and find out if it’s **Positive**, **Negative**, or **Neutral**.")
+st.write("Enter a tweet and find out if it’s **Positive** or **Negative**.")
 
 tweet = st.text_area("Tweet text:")
 
@@ -44,6 +44,7 @@ if st.button("Predict"):
         st.success(f"Prediction: {sentiment}")
     else:
         st.warning("Please enter a tweet.")
+
 
 
 
