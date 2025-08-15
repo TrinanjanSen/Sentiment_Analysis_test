@@ -28,12 +28,22 @@ st.write("Enter a tweet and find out if it’s **Positive**, **Negative**, or **
 
 tweet = st.text_area("Tweet text:")
 
-if st.button("Analyze Sentiment"):
+if st.button("Predict"):
     if tweet.strip():
-        stemmed_tweet = stemming(tweet)
-        vectorized_tweet = vectorizer.transform([stemmed_tweet])
-        prediction = model.predict(vectorized_tweet)[0]
-        st.subheader(f"Prediction: {prediction}")
+        X = vectorizer.transform([tweet])
+        prediction = model.predict(X)[0]  # 0 or 1
+
+        # Map to labels
+        if prediction == 0:
+            sentiment = "Negative 😡"
+        elif prediction == 1:
+            sentiment = "Positive 😊"
+        else:
+            sentiment = "Unknown"
+
+        st.success(f"Prediction: {sentiment}")
     else:
-        st.warning("Please enter some text.")
+        st.warning("Please enter a tweet.")
+
+
 
