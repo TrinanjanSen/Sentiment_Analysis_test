@@ -5,8 +5,12 @@ import re
 from nltk.stem.porter import PorterStemmer
 
 # Load model and vectorizer
-model = joblib.load("sentiment_model.pkl")        # change to your filename
-vectorizer = joblib.load("vectorizer.pkl")        # change to your filename
+import os
+BASE_DIR = os.path.dirname(__file__)
+model = joblib.load(os.path.join(BASE_DIR, "model.pkl"))
+       # change to your filename
+vectorizer = joblib.load(os.path.join(BASE_DIR, "vectorizer.pkl"))
+      # change to your filename
 
 # Stemmer setup
 ps = PorterStemmer()
@@ -32,3 +36,4 @@ if st.button("Analyze Sentiment"):
         st.subheader(f"Prediction: {prediction}")
     else:
         st.warning("Please enter some text.")
+
